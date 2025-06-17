@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM Section - AI Literacy Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .activity-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .activity-card:hover {
+            box-shadow: 4px 4px 16px rgba(0,0,0,0.2);
+        }
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px;
+        }
+        .filter {
+            margin: 0 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>STEM Section</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="general.html">General</a></li>
+                <li><a href="stem.html">STEM</a></li>
+                <li><a href="humanities.html">Humanities</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>AI in Science, Tech, Engineering & Math</h2>
+            <div class="filters">
+                <div class="filter">
+                    <label for="subject-filter">Filter by Subject:</label>
+                    <select id="subject-filter">
+                        <option value="all">All</option>
+                        <option value="math">Math</option>
+                        <option value="science">Science</option>
+                        <option value="cs">Computer Science</option>
+                        <option value="engineering">Engineering/Tech</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="time-filter">Filter by Time:</label>
+                    <select id="time-filter">
+                        <option value="all">All</option>
+                        <option value="short">15 min</option>
+                        <option value="medium">1 class</option>
+                        <option value="long">Multi-day</option>
+                    </select>
+                </div>
+            </div>
+            <div id="activities">
+                <div class="activity-card" data-subject="math" data-time="short">
+                    <h3>Exploring Data Sets with Excel Copilot</h3>
+                    <p>Use Excel Copilot to explore and visualize data sets.</p>
+                </div>
+                <div class="activity-card" data-subject="science" data-time="medium">
+                    <h3>Simulating Experiments with AI</h3>
+                    <p>Simulate scientific experiments and analyze lab data using AI tools.</p>
+                </div>
+                <div class="activity-card" data-subject="cs" data-time="medium">
+                    <h3>Intro to Machine Learning</h3>
+                    <p>Learn the basics of machine learning with no-code tools.</p>
+                </div>
+                <div class="activity-card" data-subject="engineering" data-time="long">
+                    <h3>AI in Design Thinking</h3>
+                    <p>Use AI to generate ideas and prototype in engineering projects.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 AI Literacy Web App. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('subject-filter').addEventListener('change', function() {
+            filterActivities();
+        });
+        document.getElementById('time-filter').addEventListener('change', function() {
+            filterActivities();
+        });
+
+        function filterActivities() {
+            var subject = document.getElementById('subject-filter').value;
+            var time = document.getElementById('time-filter').value;
+            var activities = document.querySelectorAll('.activity-card');
+
+            activities.forEach(function(activity) {
+                var activitySubject = activity.getAttribute('data-subject');
+                var activityTime = activity.getAttribute('data-time');
+
+                if ((subject === 'all' || subject === activitySubject) &&
+                    (time === 'all' || time === activityTime)) {
+                    activity.style.display = 'block';
+                } else {
+                    activity.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

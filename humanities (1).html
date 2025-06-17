@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanities Section - AI Literacy Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .activity-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .activity-card:hover {
+            box-shadow: 4px 4px 16px rgba(0,0,0,0.2);
+        }
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px;
+        }
+        .filter {
+            margin: 0 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Humanities Section</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="general.html">General</a></li>
+                <li><a href="stem.html">STEM</a></li>
+                <li><a href="humanities.html">Humanities</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>AI in Language, Arts & Society</h2>
+            <div class="filters">
+                <div class="filter">
+                    <label for="subject-filter">Filter by Subject:</label>
+                    <select id="subject-filter">
+                        <option value="all">All</option>
+                        <option value="english">English</option>
+                        <option value="history">History</option>
+                        <option value="art">Art</option>
+                        <option value="languages">Languages</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="time-filter">Filter by Time:</label>
+                    <select id="time-filter">
+                        <option value="all">All</option>
+                        <option value="short">15 min</option>
+                        <option value="medium">1 class</option>
+                        <option value="long">Multi-day</option>
+                    </select>
+                </div>
+            </div>
+            <div id="activities">
+                <div class="activity-card" data-subject="english" data-time="short">
+                    <h3>Comparing Human vs. AI Writing</h3>
+                    <p>Compare student writing with AI-generated writing.</p>
+                </div>
+                <div class="activity-card" data-subject="history" data-time="medium">
+                    <h3>Debating Ethical Dilemmas</h3>
+                    <p>Debate ethical dilemmas related to AI, such as surveillance and bias.</p>
+                </div>
+                <div class="activity-card" data-subject="art" data-time="medium">
+                    <h3>Creating AI-Assisted Art</h3>
+                    <p>Create visual art or poetry with the help of AI tools.</p>
+                </div>
+                <div class="activity-card" data-subject="languages" data-time="long">
+                    <h3>Exploring AI in Translation</h3>
+                    <p>Use AI to translate and compare idiomatic expressions in different languages.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 AI Literacy Web App. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('subject-filter').addEventListener('change', function() {
+            filterActivities();
+        });
+        document.getElementById('time-filter').addEventListener('change', function() {
+            filterActivities();
+        });
+
+        function filterActivities() {
+            var subject = document.getElementById('subject-filter').value;
+            var time = document.getElementById('time-filter').value;
+            var activities = document.querySelectorAll('.activity-card');
+
+            activities.forEach(function(activity) {
+                var activitySubject = activity.getAttribute('data-subject');
+                var activityTime = activity.getAttribute('data-time');
+
+                if ((subject === 'all' || subject === activitySubject) &&
+                    (time === 'all' || time === activityTime)) {
+                    activity.style.display = 'block';
+                } else {
+                    activity.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
